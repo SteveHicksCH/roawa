@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <form action="/save" method="post">
+        <h1>{{.Title}}</h1>
+        <p>Building name or number
+            <input type="text" name="premises" value="{{.Premises}}"> </p>
+        <p>Postcode
+            <input type="text" name="postcode" value="{{.Postcode}}"> </p>
+        <p>Address Line 1
+            <input type="text" name="addressLine1" value="{{.AddressLine1}}"> </p>
+        <p>Address Line 2
+            <input type="text" name="addressLine2" value="{{.AddressLine2}}">
+        </p>
+        <p>Town
+            <input type="text" name="town" value="{{.Town}}"> </p>
+        <p>County
+            <input type="text" name="county" value="{{.County}}"> </p>
+        <p>Country
+                <select name="country"> 
+                        {{$country := .Country}}
+                        {{range $key, $value := .Countries}}
+                          <option value="{{ $key }}" {{if eq $value $country }} selected{{end}} > {{ $value }}   </option>
+                        {{end}} 
+                      </select>
+         </p>
+        <p>POBox
+            <input type="text" name="pOBox" value="{{.POBox}}"> </p>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+
+    </form>
+
+</body>
+
+
+</html>
