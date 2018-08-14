@@ -28,9 +28,10 @@ func editRegistedAddress(w http.ResponseWriter, r *http.Request) {
 	}
 	templateDirectory := cfg.TemplateDirectory
 
-	t, err := template.ParseFiles(templateDirectory + "edit-registered-address.html")
+	templateFile := templateDirectory + "edit-registered-address.html"
+	t, err := template.ParseFiles(templateFile)
 	if err != nil {
-		log.Print("Fail to parse Template: ", err)
+		log.Println("Error: Fail to parse Template :", templateFile, ":", err)
 		panic(-1)
 	}
 

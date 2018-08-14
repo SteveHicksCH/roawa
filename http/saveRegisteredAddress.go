@@ -22,7 +22,7 @@ func saveRegistedAddress(w http.ResponseWriter, r *http.Request) {
 	templateFile := templateDirectory + "confirm-save.html"
 	t, err := template.ParseFiles(templateFile)
 	if err != nil {
-		log.Print("Fail to parse Template: ", err)
+		log.Print("Error - Fail to parse Template:", templateFile, ":", err)
 		panic(-1)
 	}
 

@@ -29,7 +29,9 @@ On Command line:
 make run
 
 In Browser:
-http://localhost:8080/edit
+http://localhost:8080/roawa/edit
+
+For CHS vagrant deploy - http://chs-dev:4000/roawa/edit
 
 Note for Firefox:
 Check that in the Network settings is ticked "Bypass proxy server for your local address"
@@ -45,9 +47,7 @@ If that doesn't work for your FF version, then set for the time being  "Manual p
 
 
 # TODO
-* Review
-* Upload to GitHub
-* Review by team/architects/leads
-* Deploy locally within vagrant
+* review point
+* New Branch feature/more-go-chs-frameworks
 * New screen to add the company number
 * Use alice/gorilla

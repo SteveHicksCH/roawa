@@ -25,7 +25,7 @@ func TestSave(t *testing.T) {
 
 	reader := strings.NewReader(data.Encode())
 	// create a fake request to be passed into the handler
-	r, err := http.NewRequest("POST", "/save", reader)
+	r, err := http.NewRequest("POST", urlPrefix+"/save", reader)
 	if err != nil {
 		t.Fatalf("error constructing test HTTP request [%s]", err)
 	}

@@ -1,4 +1,4 @@
-BINARY_NAME=${GOPATH}/bin/roa-webapp
+BINARY_NAME=${GOPATH}/bin/roawa
 DIR_WITH_MAIN=cmd/roawa
 TESTS        ?= ./...
 

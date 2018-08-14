@@ -1,0 +1,6 @@
+app_name: roawa
+group: web
+weight: 80
+routes:
+   1: /roawa/edit
+   2: /roawa/save
