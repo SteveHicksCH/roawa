@@ -8,8 +8,6 @@ This is a vanilla web application to:
 # Package Structure
 Experiment using https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1 
 
-will refactor go-roa-webapp to roawa
-
 # Building
 make build
 

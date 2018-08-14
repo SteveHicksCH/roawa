@@ -1,8 +1,6 @@
 #!/bin/bash
 #
-# Start script for roawa
-
-# Start script for local CHS (within Vagrant) 
+# Start script for roawa in local CHS (within Vagrant) 
 
 BINARY_NAME=${GOPATH}/bin/roawa
 
