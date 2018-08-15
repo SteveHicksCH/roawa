@@ -1,5 +1,19 @@
 package roawa
 
+// FindPageVariables edit page variable
+type FindPageVariables struct {
+	Title     string
+	CompanyID string
+	Error     string
+}
+
+// NewFindPageVariables creates a new FindPageVariables struct with default values
+func NewFindPageVariables() FindPageVariables {
+	f := FindPageVariables{}
+	f.Title = "Find Company"
+	return f
+}
+
 // EditPageVariables edit page variable
 type EditPageVariables struct {
 	Title        string

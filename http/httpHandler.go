@@ -8,9 +8,11 @@ import (
 )
 
 const urlPrefix = "/roawa"
+const findURL = urlPrefix + "/find"
 
 // ServeHTTP facade for application HTTP Server
 func ServeHTTP() {
+	http.HandleFunc(findURL, findCompany)
 	http.HandleFunc(urlPrefix+"/edit", editRegistedAddress)
 	http.HandleFunc(urlPrefix+"/save", saveRegistedAddress)
 

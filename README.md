@@ -45,7 +45,7 @@ If that doesn't work for your FF version, then set for the time being  "Manual p
 
 
 # TODO
-* review point
 * New Branch feature/more-go-chs-frameworks
 * New screen to add the company number
 * Use alice/gorilla
+* Use roa service in CHS to update registered address

@@ -31,16 +31,15 @@ func FindRegisteredAddress(companyNumber string) (roawa.RoaAddress, error) {
 	req.Header.Set("Accept", "application/json")
 	client := &http.Client{}
 	response, err := client.Do(req)
-	var jsonAddress roawa.RoaAddress
-
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		return roawa.RoaAddress{}, err
 	}
 
 	defer response.Body.Close()
+	var jsonAddress roawa.RoaAddress
 	err = json.NewDecoder(response.Body).Decode(&jsonAddress)
-	log.Println(jsonAddress)
+	log.Println("CH JSON Data", jsonAddress, " error value ", err)
 
-	return jsonAddress, nil
+	return jsonAddress, err
 }
