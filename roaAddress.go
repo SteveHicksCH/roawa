@@ -11,3 +11,15 @@ type RoaAddress struct {
 	Country      string `json:"country"`
 	POBox        string `json:"po_box"`
 }
+
+// UpdateRoaAddress updates the receiver values from what the user entered on the web form
+func (r *RoaAddress) UpdateRoaAddress(c ConfirmPageVariables) {
+	r.Premises = c.Premises
+	r.Postcode = c.Postcode
+	r.AddressLine1 = c.AddressLine1
+	r.AddressLine2 = c.AddressLine2
+	r.Locality = c.Town
+	r.Region = c.County
+	r.Country = c.Country
+	r.POBox = c.POBox
+}

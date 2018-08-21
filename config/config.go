@@ -8,10 +8,13 @@ import (
 )
 
 type config struct {
-	gofigure          interface{} `order:"env,flag"`
-	APIKey            string      `env:"ROA_WEBAPP_API_KEY" flag:"API key authorising use of CH API"`
-	TemplateDirectory string      `env:"ROAWA_TEMPLATES_DIR" flag:"Directory for application templates"`
-	ListenAddress     string      `env:"ROAWA_LISTEN_ADDRESS" flag:"Listen address and port for application web server"`
+	gofigure              interface{} `order:"env,flag"`
+	APIKey                string      `env:"ROA_WEBAPP_API_KEY" flag:"API key authorising use of CH API"`
+	LocalAPIKey           string      `env:"LOCAL_API_KEY" flag:"API key authorising use of CH API in local instance"`
+	LocalTxnAddress       string      `env:"LOCAL_TXN_ADDRESS" flag:"Address for Transaction API Call"`
+	LocalROAAddressPrefix string      `env:"LOCAL_ROA_ADDRESS_PREFIX" flag:"First Part of Address for ROA API Call"`
+	TemplateDirectory     string      `env:"ROAWA_TEMPLATES_DIR" flag:"Directory for application templates"`
+	ListenAddress         string      `env:"ROAWA_LISTEN_ADDRESS" flag:"Listen address and port for application web server"`
 }
 
 var cfg *config
@@ -43,6 +46,7 @@ func Get() (*config, error) {
 }
 
 func setDefaultValues() {
+
 	if cfg.TemplateDirectory == "" {
 		cfg.TemplateDirectory = os.Getenv("GOPATH") + string(os.PathSeparator) + "src" + string(os.PathSeparator) + "github.com" + string(os.PathSeparator) + "shicks" + string(os.PathSeparator) + "roawa" + string(os.PathSeparator) + "http" + string(os.PathSeparator) + "templates" + string(os.PathSeparator)
 	}

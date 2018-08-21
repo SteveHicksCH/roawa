@@ -42,7 +42,7 @@ func editRegistedAddress(w http.ResponseWriter, r *http.Request) {
 	}
 
 	editPageVariables := roawa.NewEditPageVariables()
-	editPageVariables.UpdateEditPageVariables(roaAddress)
+	editPageVariables.UpdateEditPageVariables(roaAddress, CompanyID)
 
 	cfg, err := config.Get()
 	if err != nil {

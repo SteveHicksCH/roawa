@@ -22,6 +22,7 @@ func TestSave(t *testing.T) {
 	data.Add("county", "Vale of Glamorgan")
 	data.Add("country", "uk")
 	data.Add("town", "Penarth")
+	data.Add("companyID", "00006400")
 
 	reader := strings.NewReader(data.Encode())
 	// create a fake request to be passed into the handler
@@ -32,16 +33,20 @@ func TestSave(t *testing.T) {
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	saveRegistedAddress(w, r)
-
+	var found bool
 	scanner := bufio.NewScanner(w.Body)
 	for scanner.Scan() {
 		if strings.Contains(scanner.Text(), "New Address") {
+			found = true
 			newAddressHTMLLine := scanner.Text()
 			expectedAddress := "New Address  16 Coleridge Avenue The Gardens Penarth Vale of Glamorgan CF64 2SQ United Kingdom"
 			if !strings.Contains(newAddressHTMLLine, expectedAddress) {
 				t.Errorf("Incorrect new address, expected = '%s' , within line '%s'", expectedAddress, newAddressHTMLLine)
 			}
 		}
+	}
+	if !found {
+		t.Errorf("No Address found")
 	}
 
 }

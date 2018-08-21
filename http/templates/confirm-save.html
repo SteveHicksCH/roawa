@@ -8,7 +8,12 @@
 
 <body>
     <h1>{{.Title}}</h1>
+    {{ if ne .Error  ""}}
+    <p><span style="color: #ff0000">Error: {{.Error}}</span></p>
+    {{end}}
+    {{ if eq .Error  ""}}
     <p>New Address  {{.Premises}} {{.AddressLine1}} {{.AddressLine2}} {{.Town }} {{.County }} {{.Postcode}} {{.Country }} {{.POBox}}</p>
+    {{end}}
     <p>Reference  {{.Reference}}</p>
 
 </body>

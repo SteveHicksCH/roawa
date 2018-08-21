@@ -15,11 +15,14 @@ make build
 
 ## Configuration
 
-| Environment variable |  Description | Default Value
-| -------------------- | ----------- | --------------
-| `ROA_WEBAPP_API_KEY` | API key authorising the application to access the CHS API |
-| `ROAWA_LISTEN_ADDRESS`| Listen Address and Port | 127.0.0.1:8080
-| `ROAWA_TEMPLATES_DIR`| Directory for application HTML templates | ${GOPATH}/src/github.com/shicks/roawa/http/templates
+| Environment variable       | Description | Default Value
+| -------------------------- | ----------- | --------------
+| `ROA_WEBAPP_API_KEY`       | API key authorising the application to access the CHS API |
+| `ROAWA_LISTEN_ADDRESS`     | Listen Address and Port | 127.0.0.1:8080
+| `ROAWA_TEMPLATES_DIR`      | Directory for application HTML templates | ${GOPATH}/src/github.com/shicks/roawa/http/templates
+| `LOCAL_TXN_ADDRESS`        | CHS Address of Transaction service |
+| `LOCAL_ROA_ADDRESS_PREFIX` | Prefix of ROA service |
+| `LOCAL_API_KEY`            | Local CHS API |
 
 
 # Running
@@ -29,7 +32,7 @@ make run
 In Browser:
 http://localhost:8080/roawa/edit
 
-For CHS vagrant deploy - http://chs-dev:4000/roawa/edit
+For CHS vagrant deploy - http://[CHS Alias and LB Port]/roawa/edit
 
 Note for Firefox:
 Check that in the Network settings is ticked "Bypass proxy server for your local address"

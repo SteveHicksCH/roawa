@@ -26,6 +26,7 @@ type EditPageVariables struct {
 	Countries    map[string]string
 	Country      string
 	POBox        string
+	CompanyID    string
 }
 
 // NewEditPageVariables creates a new EditPageVariables struct with default values
@@ -37,7 +38,7 @@ func NewEditPageVariables() EditPageVariables {
 }
 
 // UpdateEditPageVariables updates the receiver values with that in the RoaAddress variable
-func (e *EditPageVariables) UpdateEditPageVariables(r RoaAddress) {
+func (e *EditPageVariables) UpdateEditPageVariables(r RoaAddress, companyID string) {
 	e.Premises = r.Premises
 	e.Postcode = r.Postcode
 	e.AddressLine1 = r.AddressLine1
@@ -46,6 +47,7 @@ func (e *EditPageVariables) UpdateEditPageVariables(r RoaAddress) {
 	e.County = r.Region
 	e.Country = r.Country
 	e.POBox = r.POBox
+	e.CompanyID = companyID
 }
 
 // ConfirmPageVariables save page variable
@@ -61,6 +63,7 @@ type ConfirmPageVariables struct {
 	Country      string
 	POBox        string
 	Reference    string
+	Error        string
 }
 
 // NewConfirmPageVariables creates a new ConfirmPageVariables struct with default values
