@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <form action="/roawa/edit" method="get">
+        <h1>{{.Title}}</h1>
+        {{ if ne .Error  ""}}
+        <p><span style="color: #ff0000">Error: {{.Error}}</span></p>
+        {{end}}
+        <p>Company Identifier
+            <input type="text" name="companyID" value="{{.CompanyID}}"> </p>
+        <div>
+            <input type="submit" value="Find">
+        </div>
+
+    </form>
+
+</body>
+
+
+</html>

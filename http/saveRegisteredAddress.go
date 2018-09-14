@@ -3,15 +3,21 @@ package http
 import (
 	"html/template"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"time"
 
 	"github.com/shicks/roawa"
 	"github.com/shicks/roawa/config"
+	"github.com/shicks/roawa/restclient"
 )
 
 func saveRegistedAddress(w http.ResponseWriter, r *http.Request) {
 	confirmPageVars := roawa.NewConfirmPageVariables()
-	confirmPageVars.Reference = "10989097"
+	rand.Seed(time.Now().UnixNano())
+	random := rand.Intn(30000)
+	confirmPageVars.Reference = strconv.Itoa(random)
 
 	cfg, err := config.Get()
 	if err != nil {
@@ -35,12 +41,46 @@ func saveRegistedAddress(w http.ResponseWriter, r *http.Request) {
 	confirmPageVars.Country = confirmPageVars.Countries[country]
 	confirmPageVars.Postcode = r.FormValue("postcode")
 	confirmPageVars.POBox = r.FormValue("pOBox")
+	companyID := r.FormValue("companyID")
 
-	//  Do save via ROA API
+	//  Do save via ROA API (add a new failure page to display on errors)
 
-	err = t.Execute(w, confirmPageVars)
+	transactionRequest := roawa.TransactionRequest{
+		CompanyNumber: companyID,
+		Reference:     confirmPageVars.Reference,
+		Description:   "ROAWA Update",
+	}
+	transactionResponse, err := restclient.CreateTransaction(transactionRequest)
+	if err != nil {
+		confirmPageVars.Error = "Fail setting up change request"
+		log.Print("Error - Fail create a new transaction:", confirmPageVars, err)
+		executeTemplate(t, w, confirmPageVars)
+		return
+	}
+	if transactionResponse.ID == "" {
+		confirmPageVars.Error = "Fail setting up change request"
+		log.Print("No Transaction id returned in response - ", transactionResponse)
+		executeTemplate(t, w, confirmPageVars)
+		return
+	}
+
+	roaAddress := roawa.RoaAddress{}
+	roaAddress.UpdateRoaAddress(confirmPageVars)
+	err = restclient.ReplaceROA(roaAddress, transactionResponse.ID)
+	if err != nil {
+		confirmPageVars.Error = "Fail updating the ROA"
+		log.Print("Error - Fail in ROA Update:", templateFile, ":", err)
+		executeTemplate(t, w, confirmPageVars)
+		return
+	}
+
+	executeTemplate(t, w, confirmPageVars)
+
+}
+
+func executeTemplate(t *template.Template, w http.ResponseWriter, confirmPageVars roawa.ConfirmPageVariables) {
+	err := t.Execute(w, confirmPageVars)
 	if err != nil {
 		log.Print("Template execution error: ", err)
 	}
-
 }
